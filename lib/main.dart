@@ -14,6 +14,7 @@ class FirstPage extends StatelessWidget {
         primaryColor: Color.fromRGBO(19, 19, 214, 1.0),
       ),
       home: Scaffold(
+        backgroundColor: Color.fromRGBO(0, 0, 153, 1.0),
         appBar: AppBar(
           title: Text('Random User Generator'),
         ),
@@ -21,12 +22,12 @@ class FirstPage extends StatelessWidget {
           child: RaisedButton(
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(
-                20.0,
+                15.0,
               ),
             ),
             onPressed: () {},
             child: Container(
-              padding: EdgeInsets.all(8.0),
+              padding: EdgeInsets.all(10.0),
               child: Text(
                 'Generate a random user!',
                 style: TextStyle(fontSize: 18.0),
