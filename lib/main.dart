@@ -14,15 +14,16 @@ class FirstPage extends StatelessWidget {
         primaryColor: Color.fromRGBO(19, 19, 214, 1.0),
       ),
       home: Scaffold(
-        backgroundColor: Color.fromRGBO(0, 0, 153, 1.0),
         appBar: AppBar(
-          title: Text('Random User Generator'),
+          title: Text('Random User Generator 🧑'),
+          centerTitle: true,
         ),
         body: Center(
           child: RaisedButton(
+            color: Color.fromRGBO(19, 19, 214, 1.0),
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(
-                15.0,
+                30.0,
               ),
             ),
             onPressed: () {},
@@ -30,12 +31,22 @@ class FirstPage extends StatelessWidget {
               padding: EdgeInsets.all(10.0),
               child: Text(
                 'Generate a random user!',
-                style: TextStyle(fontSize: 18.0),
+                style: TextStyle(
+                  fontSize: 18.0,
+                  color: Colors.white,
+                ),
               ),
             ),
           ),
         ),
       ),
     );
+  }
+}
+
+class SecondPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container();
   }
 }
