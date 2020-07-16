@@ -1,6 +1,27 @@
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 
-class Generator extends StatelessWidget {
+class Generator extends StatefulWidget {
+  @override
+  _GeneratorState createState() => _GeneratorState();
+}
+
+class _GeneratorState extends State<Generator> {
+  var isLoaded;
+  var name;
+  var email;
+  var birthday;
+  var phone_number;
+  var password;
+  var picture;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    //TODO: make request to randomuser.me apis and setState
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
