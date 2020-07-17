@@ -1,6 +1,8 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 class Generator extends StatefulWidget {
   @override
@@ -22,7 +24,11 @@ class _GeneratorState extends State<Generator> {
     // TODO: implement initState
     super.initState();
     //TODO: make request to randomuser.me apis and setState
-    getData();
+    try {
+      getData();
+    } catch (e) {
+      print('Something happened :(');
+    }
   }
 
   @override
@@ -34,13 +40,35 @@ class _GeneratorState extends State<Generator> {
       ),
       body: Center(
         child: Container(
-          child: Text(isLoaded ? name : 'Loading...'),
-        ),
+            child: isLoaded
+                ? Column(
+                    children: [
+                      ClipOval(
+                        child: Image.network(
+                          picture,
+                          fit: BoxFit.fill,
+                          width: 200,
+                          height: 200,
+                        ),
+                      ),
+                      Text(name),
+                    ],
+                  )
+                : SpinKitRing(
+                    color: Color.fromRGBO(19, 19, 214, 1.0),
+                    size: 50.0,
+                  ) //,
+            ),
       ),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.refresh),
         backgroundColor: Color.fromRGBO(19, 19, 214, 1.0),
-        onPressed: () {},
+        onPressed: () {
+          setState(() {
+            isLoaded = false;
+          });
+          getData();
+        },
       ),
     );
   }
@@ -58,10 +86,10 @@ class _GeneratorState extends State<Generator> {
         phoneNumber = '${result['results'][0]['cell']}';
         username = '${result['results'][0]['login']['username']}';
         password = '${result['results'][0]['login']['password']}';
-        picture = '${result['results'][0]['picture']['medium']}';
+        picture = '${result['results'][0]['picture']['large']}';
       });
     } else {
-      print('Oops');
+      throw Exception('Error fetching data');
     }
   }
 }
