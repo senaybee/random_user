@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'dart:convert';
 
 class Generator extends StatefulWidget {
   @override
@@ -7,11 +8,12 @@ class Generator extends StatefulWidget {
 }
 
 class _GeneratorState extends State<Generator> {
-  var isLoaded;
+  bool isLoaded = false;
   var name;
   var email;
   var birthday;
-  var phone_number;
+  var phoneNumber;
+  var username;
   var password;
   var picture;
 
@@ -20,6 +22,7 @@ class _GeneratorState extends State<Generator> {
     // TODO: implement initState
     super.initState();
     //TODO: make request to randomuser.me apis and setState
+    getData();
   }
 
   @override
@@ -31,7 +34,7 @@ class _GeneratorState extends State<Generator> {
       ),
       body: Center(
         child: Container(
-          child: Text('Hello world!'),
+          child: Text(isLoaded ? name : 'Loading...'),
         ),
       ),
       floatingActionButton: FloatingActionButton(
@@ -40,5 +43,25 @@ class _GeneratorState extends State<Generator> {
         onPressed: () {},
       ),
     );
+  }
+
+  void getData() async {
+    final response = await http.get('https://randomuser.me/api/');
+    if (response.statusCode == 200) {
+      Map<String, dynamic> result = json.decode(response.body);
+      print(result);
+      setState(() {
+        isLoaded = true;
+        name =
+            '${result['results'][0]['name']['first']} ${result['results'][0]['name']['last']}';
+        email = '${result['results'][0]['email']}';
+        phoneNumber = '${result['results'][0]['cell']}';
+        username = '${result['results'][0]['login']['username']}';
+        password = '${result['results'][0]['login']['password']}';
+        picture = '${result['results'][0]['picture']['medium']}';
+      });
+    } else {
+      print('Oops');
+    }
   }
 }
