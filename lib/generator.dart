@@ -36,6 +36,7 @@ class _GeneratorState extends State<Generator> {
                 ? Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
+                      SizedBox(height: 10.0),
                       ClipOval(
                         child: Image.network(
                           picture,
@@ -44,55 +45,57 @@ class _GeneratorState extends State<Generator> {
                           height: 200,
                         ),
                       ),
-                      Column(
-                        children: [
-                          SizedBox(
-                            height: 15.0,
-                          ),
-                          Divider(
-                            height: 1.0,
-                          ),
-                          ListTile(
-                            leading: Icon(Icons.person),
-                            title: Text(
-                              username,
-                              style: TextStyle(fontSize: 16.0),
+                      Expanded(
+                        child: Column(
+                          children: [
+                            SizedBox(
+                              height: 15.0,
                             ),
-                          ),
-                          Divider(
-                            height: 1.0,
-                          ),
-                          ListTile(
-                            leading: Icon(Icons.vpn_key),
-                            title: Text(password),
-                          ),
-                          Divider(
-                            height: 1.0,
-                          ),
-                          ListTile(
-                            leading: Icon(Icons.title),
-                            title: Text(name),
-                          ),
-                          Divider(
-                            height: 1.0,
-                          ),
-                          ListTile(
-                              leading: Icon(Icons.email), title: Text(email)),
-                          Divider(
-                            height: 1.0,
-                          ),
-                          ListTile(
-                            leading: Icon(Icons.phone),
-                            title: Text(phoneNumber),
-                          ),
-                          Divider(
-                            height: 1.0,
-                          ),
-                          ListTile(
-                            leading: Icon(Icons.cake),
-                            title: Text(birthday),
-                          )
-                        ],
+                            Divider(
+                              height: 1.0,
+                            ),
+                            ListTile(
+                              leading: Icon(Icons.person),
+                              title: Text(
+                                username,
+                                style: TextStyle(fontSize: 16.0),
+                              ),
+                            ),
+                            Divider(
+                              height: 1.0,
+                            ),
+                            ListTile(
+                              leading: Icon(Icons.vpn_key),
+                              title: Text(password),
+                            ),
+                            Divider(
+                              height: 1.0,
+                            ),
+                            ListTile(
+                              leading: Icon(Icons.title),
+                              title: Text(name),
+                            ),
+                            Divider(
+                              height: 1.0,
+                            ),
+                            ListTile(
+                                leading: Icon(Icons.email), title: Text(email)),
+                            Divider(
+                              height: 1.0,
+                            ),
+                            ListTile(
+                              leading: Icon(Icons.phone),
+                              title: Text(phoneNumber),
+                            ),
+                            Divider(
+                              height: 1.0,
+                            ),
+                            ListTile(
+                              leading: Icon(Icons.cake),
+                              title: Text(birthday),
+                            )
+                          ],
+                        ),
                       )
                     ],
                   )
