@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-//TODO: Create a file to hold const TextStyles
 
 class Generator extends StatefulWidget {
   @override
@@ -12,19 +11,11 @@ class Generator extends StatefulWidget {
 
 class _GeneratorState extends State<Generator> {
   bool isLoaded = false;
-  var name;
-  var email;
-  var birthday;
-  var phoneNumber;
-  var username;
-  var password;
-  var picture;
+  String name, email, birthday, phoneNumber, username, password, picture;
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
-    //TODO: make request to randomuser.me apis and setState
     try {
       getData();
     } catch (e) {
@@ -53,12 +44,56 @@ class _GeneratorState extends State<Generator> {
                           height: 200,
                         ),
                       ),
-                      Text(username),
-                      Text(password),
-                      Text(name),
-                      Text(email),
-                      Text(phoneNumber),
-                      Text(birthday)
+                      Column(
+                        children: [
+                          SizedBox(
+                            height: 15.0,
+                          ),
+                          Divider(
+                            height: 1.0,
+                          ),
+                          ListTile(
+                            leading: Icon(Icons.person),
+                            title: Text(
+                              username,
+                              style: TextStyle(fontSize: 16.0),
+                            ),
+                          ),
+                          Divider(
+                            height: 1.0,
+                          ),
+                          ListTile(
+                            leading: Icon(Icons.vpn_key),
+                            title: Text(password),
+                          ),
+                          Divider(
+                            height: 1.0,
+                          ),
+                          ListTile(
+                            leading: Icon(Icons.title),
+                            title: Text(name),
+                          ),
+                          Divider(
+                            height: 1.0,
+                          ),
+                          ListTile(
+                              leading: Icon(Icons.email), title: Text(email)),
+                          Divider(
+                            height: 1.0,
+                          ),
+                          ListTile(
+                            leading: Icon(Icons.phone),
+                            title: Text(phoneNumber),
+                          ),
+                          Divider(
+                            height: 1.0,
+                          ),
+                          ListTile(
+                            leading: Icon(Icons.cake),
+                            title: Text(birthday),
+                          )
+                        ],
+                      )
                     ],
                   )
                 : SpinKitRing(
